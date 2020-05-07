@@ -80,7 +80,18 @@ int DoMain(int argc, char *argv[]) {
   }
 
   // Detect grasp poses.
-  detector.detectGrasps(cloud);
+  auto clusters = detector.detectGrasps(cloud);
+
+  // Output results in text file
+  std::string hands_out_filename = "grasps.out";
+  std::vector<gpd::candidate::Hand> clusters_copy;
+  for (auto& hand : clusters)
+  {
+    clusters_copy.push_back(*hand);
+  }
+  
+  gpd::candidate::Hand tmp_hand;
+  tmp_hand.writeHandsToFile(hands_out_filename, clusters_copy);
 
   return 0;
 }

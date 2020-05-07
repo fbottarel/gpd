@@ -53,11 +53,13 @@ void Hand::writeHandsToFile(const std::string &filename,
     std::cout << "Hand " << i << std::endl;
     print();
 
-    myfile << vectorToString(hands[i].getPosition())
-           << vectorToString(hands[i].getAxis())
-           << vectorToString(hands[i].getApproach())
-           << vectorToString(hands[i].getBinormal())
-           << std::to_string(hands[i].getGraspWidth()) << "\n";
+    myfile << "Hand " << i << " \n"
+           << "position: " << vectorToString(hands[i].getPosition()) << "\n" 
+           << "axis: " << vectorToString(hands[i].getAxis()) << "\n" 
+           << "approach: " << vectorToString(hands[i].getApproach()) << "\n" 
+           << "score: " << hands[i].getScore() << " \n" 
+           << "binormal: " << vectorToString(hands[i].getBinormal()) << "\n" 
+           << "grasp width: " << std::to_string(hands[i].getGraspWidth()) << "\n\n";
   }
 
   myfile.close();
